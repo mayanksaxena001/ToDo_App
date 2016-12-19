@@ -25,25 +25,39 @@ public class DatabaseInit {
 	
 	@PostConstruct
 	public void init(){
+		URI dbUri=null;
 		try {
-			getConnection();
+			 dbUri = new URI(System.getenv("DATABASE_URL"));
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
+
+		String db=dbUri.getPath().substring(1);
+			String 	sql_="create table "+db+".todo_items("+
+				"id int NOT NULL ,"+
+				"text varchar(255),"+
+				"created_date date,"+
+				"due_date date,"+
+				"primary key(id)"+
+				");";
 		System.out.println("Executing sql script...");
-		try (Connection connection = dataSource.getConnection();
-                Statement statement = connection.createStatement()) {
-               for(String sql: retrieveSqls()) {
-                   statement.executeUpdate(sql);
-                   System.out.println(sql);
-               }
-           } catch (SQLException | IOException e) {
-               System.out.println(e.getMessage());
-               return ;
-           }
+		System.out.println(sql_);
+		try {
+			System.out.println(dataSource.getConnection().createStatement().executeUpdate(sql_));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return;
+		}
+//		try (Connection connection = dataSource.getConnection();
+//                Statement statement = connection.createStatement()) {
+//               for(String sql: retrieveSqls()) {
+//                   statement.executeUpdate(sql);
+//                   
+//               }
+//           } catch (SQLException | IOException e) {
+//               System.out.println(e.getMessage());
+//               return ;
+//           }
 	}
 	
 	private static Connection getConnection() throws URISyntaxException, SQLException {
