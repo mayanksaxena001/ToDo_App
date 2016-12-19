@@ -52,7 +52,7 @@ public class DatabaseInit {
 	    String username = dbUri.getUserInfo().split(":")[0];
 	    String password = dbUri.getUserInfo().split(":")[1];
 	    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-	    System.out.println(dbUrl);
+	    System.out.println( dbUri.getPath());
 
 	    return DriverManager.getConnection(dbUrl, username, password);
 	}
