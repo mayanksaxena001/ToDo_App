@@ -32,8 +32,8 @@ public class DatabaseInit {
 			e1.printStackTrace();
 		}
 		String db=dbUri.getPath().substring(1);
-		String schema="CREATE SCHEMA IF NOT EXISTS "+db;
-			String 	sql_="create table "+db+".todo_items("+
+		String schema="CREATE SCHEMA IF NOT EXISTS "+"postgres";
+			String 	sql_="create table "+"postgres"+".todo_items("+
 				"id int NOT NULL ,"+
 				"text varchar(255),"+
 				"created_date date,"+
