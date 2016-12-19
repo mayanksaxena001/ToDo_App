@@ -2,6 +2,8 @@ package com.database;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,6 +25,14 @@ public class DatabaseInit {
 	
 	@PostConstruct
 	public void init(){
+		try {
+			getConnection();
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		System.out.println("Executing sql script...");
 		try (Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement()) {
@@ -34,6 +44,17 @@ public class DatabaseInit {
                System.out.println(e.getMessage());
                return ;
            }
+	}
+	
+	private static Connection getConnection() throws URISyntaxException, SQLException {
+	    URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+	    String username = dbUri.getUserInfo().split(":")[0];
+	    String password = dbUri.getUserInfo().split(":")[1];
+	    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+	    System.out.println(dbUrl);
+
+	    return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
 	 private static Connection getMasterConnection() throws SQLException {
