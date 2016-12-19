@@ -31,8 +31,8 @@ public class DatabaseInit {
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		}
-
 		String db=dbUri.getPath().substring(1);
+		String schema="CREATE SCHEMA IF NOT EXISTS "+db;
 			String 	sql_="create table "+db+".todo_items("+
 				"id int NOT NULL ,"+
 				"text varchar(255),"+
@@ -43,7 +43,11 @@ public class DatabaseInit {
 		System.out.println("Executing sql script...");
 		System.out.println(sql_);
 		try {
-			System.out.println(dataSource.getConnection().createStatement().executeUpdate(sql_));
+			Connection con=dataSource.getConnection();
+			Statement statement = con.createStatement();
+			statement.executeUpdate(schema);
+			statement.executeUpdate(sql_);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return;
