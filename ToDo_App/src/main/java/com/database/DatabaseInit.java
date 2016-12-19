@@ -32,7 +32,7 @@ public class DatabaseInit {
 			e1.printStackTrace();
 		}
 		String db=dbUri.getPath().substring(1);
-		String schema="Use "+"postgres";
+		String schema="'\'connect "+"postgres";
 			String 	sql_="create table "+"postgres"+".todo_items("+
 				"id int NOT NULL ,"+
 				"text varchar(255),"+
