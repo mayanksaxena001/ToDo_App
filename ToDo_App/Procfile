@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS  target/*.war
+web: sh target/
