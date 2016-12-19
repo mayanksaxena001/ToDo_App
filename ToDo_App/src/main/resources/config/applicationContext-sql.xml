@@ -22,6 +22,10 @@
         <property name="maxTotal" value="20"></property>
         <property name="maxIdle" value="10"></property> -->
     </bean>
+    
+    <bean class="java.net.URI" id="dbUrl">
+      <constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
+   </bean>
 
     <bean id="namedParameterJdbcTemplate"
           class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
