@@ -15,13 +15,13 @@ import com.util.sqlParameterSourcefactory;
 @Component
 public class TodoRepositoryImpl implements TodoRepository{
 
-	private static final String SELECT_ALL_TODO_ITEMS = "select id,text,created_date,due_date from todo_items";
-	private static final String ADD_NEW_TODO_ITEM = "Insert into todo_items(id,text,created_date,due_date) values(:id,:text,:createdDate,:dueDate)";
-	private static final String UPDATE_TODO_ITEM = "UPDATE todo_items SET"
+	private static final String SELECT_ALL_TODO_ITEMS = "select id,text,created_date,due_date from postgres.todo_items";
+	private static final String ADD_NEW_TODO_ITEM = "Insert into postgres.todo_items(id,text,created_date,due_date) values(:id,:text,:createdDate,:dueDate)";
+	private static final String UPDATE_TODO_ITEM = "UPDATE postgres.todo_items SET"
 			+ " text              = COALESCE  (:text,text),"
 			+ " created_date              = COALESCE (:createdDate,created_date),"
 			+ " due_date              = COALESCE (:dueDate,due_date) " + " WHERE id = :id";;
-	private static final String DELETE_TODO_ITEM = "DELETE FROM todo_items WHERE id = :id";
+	private static final String DELETE_TODO_ITEM = "DELETE FROM postgres.todo_items WHERE id = :id";
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
