@@ -1,9 +1,8 @@
 --DROP DATABASE TODO;
 --CREATE DATABASE TODO;
 --USE TODO;
-CREATE USER flyway;
 CREATE SCHEMA IF NOT EXISTS postgres ;
-GRANT ALL ON ALL TABLES IN SCHEMA postgres TO flyway;
+GRANT ALL ON ALL TABLES IN SCHEMA postgres TO superuser;
 drop table IF EXISTS postgres.todo_items;
 create table postgres.todo_items(
 id int NOT NULL ,
