@@ -23,7 +23,7 @@ public class DatabaseInit {
 	@Autowired
 	DataSource dataSource;
 	
-	@PostConstruct
+//	@PostConstruct
 	public void init(){
 		URI dbUri=null;
 		try {
@@ -32,7 +32,7 @@ public class DatabaseInit {
 			e1.printStackTrace();
 		}
 		String db=dbUri.getPath().substring(1);
-		String schema="'\'connect "+"postgres";
+		String schema="connect "+"postgres";
 			String 	sql_="create table "+"postgres"+".todo_items("+
 				"id int NOT NULL ,"+
 				"text varchar(255),"+

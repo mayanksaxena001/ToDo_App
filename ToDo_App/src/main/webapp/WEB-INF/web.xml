@@ -11,11 +11,15 @@
 	</context-param>
 	<listener>
 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-</listener>
+	</listener>
 	<servlet>
 	<servlet-name>CXFServlet</servlet-name>
 	<display-name>CXF Servlet</display-name>
 	<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+	<init-param>
+	<param-name>hide-service-list-page</param-name> 
+	<param-value>true</param-value> 
+	</init-param> 
 	<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -25,7 +29,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>  
-   <welcome-file>home.html</welcome-file>  
+   <welcome-file>CXFServlet</welcome-file>  
   </welcome-file-list>  
 	
 </web-app>
