@@ -48,7 +48,7 @@ public class DatabaseInit {
 	    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 	    System.out.println( dbUri.getPath());
 
-	    return dbUri.getPath();
+	    return dbUri.getPath().subString(1);
 	}
 	
 	 private static Connection getMasterConnection() throws SQLException {
