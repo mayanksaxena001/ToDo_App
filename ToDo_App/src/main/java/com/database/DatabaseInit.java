@@ -30,8 +30,9 @@ public class DatabaseInit {
 		try (Connection connection = dataSource.getConnection();
                Statement statement = connection.createStatement()) {
               for(String sql: retrieveSqls()) {
+		  System.out.println(sql);
                   statement.executeUpdate(sql);
-                  System.out.println(sql);
+                 
               }
           } catch (SQLException | IOException e) {
               System.out.println(e.getMessage());
