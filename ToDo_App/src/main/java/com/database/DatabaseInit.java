@@ -25,6 +25,7 @@ public class DatabaseInit {
 	
 	@PostConstruct
 	public void init(){
+<<<<<<< HEAD
 //		URI dbUri=null;
 //		try {
 //			 dbUri = new URI(System.getenv("DATABASE_URL"));
@@ -62,9 +63,24 @@ public class DatabaseInit {
                System.out.println(e.getMessage());
                return ;
            }
+=======
+		System.out.println("Executing sql script...");
+
+		try (Connection connection = dataSource.getConnection();
+               Statement statement = connection.createStatement()) {
+		statement.executeUpdate("SELECT usename FROM "+getConnection()+".pg_users;");
+              for(String sql: retrieveSqls()) {
+		  System.out.println(sql);
+                  statement.executeUpdate(sql);  
+              }
+          } catch (Exception e) {
+              System.out.println(e.getMessage());
+              return ;
+          }
+>>>>>>> 8ce03d52dc60627134c420f4dd7e73b980d26d41
 	}
 	
-	private static Connection getConnection() throws URISyntaxException, SQLException {
+	private static String getConnection() throws URISyntaxException, SQLException {
 	    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
 	    String username = dbUri.getUserInfo().split(":")[0];
@@ -72,7 +88,7 @@ public class DatabaseInit {
 	    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 	    System.out.println( dbUri.getPath());
 
-	    return DriverManager.getConnection(dbUrl, username, password);
+	    return dbUri.getPath().substring(1);
 	}
 	
 	 private static Connection getMasterConnection() throws SQLException {
