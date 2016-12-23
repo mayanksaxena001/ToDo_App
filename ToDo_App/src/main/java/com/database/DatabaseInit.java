@@ -32,10 +32,9 @@ public class DatabaseInit {
 		statement.executeUpdate("SELECT usename FROM "+getConnection()+".pg_users;");
               for(String sql: retrieveSqls()) {
 		  System.out.println(sql);
-                  statement.executeUpdate(sql);
-                 
+                  statement.executeUpdate(sql);  
               }
-          } catch (SQLException | IOException e) {
+          } catch (Exception e) {
               System.out.println(e.getMessage());
               return ;
           }
