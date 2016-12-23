@@ -26,16 +26,27 @@
     <bean class="java.net.URI" id="dbUrl">
       <constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
    </bean> -->
+	
+	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+       <property name="url" value="#{ 'jdbc:mysql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+    	<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+    	<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+    </bean>
+    
+    <bean class="java.net.URI" id="dbUrl">
+      <constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
+   </bean> 
    
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/mysql" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
        <!--  <property name="initialSize" value="10"></property>
         <property name="maxTotal" value="20"></property>
-        <property name="maxIdle" value="10"></property> -->
-    </bean>
+        <property name="maxIdle" value="10"></property> 
+    </bean>-->
 
     <bean id="namedParameterJdbcTemplate"
           class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
