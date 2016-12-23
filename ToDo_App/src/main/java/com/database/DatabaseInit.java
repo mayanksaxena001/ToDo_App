@@ -23,7 +23,7 @@ public class DatabaseInit {
 	@Autowired
 	DataSource dataSource;
 	
-//	@PostConstruct
+	@PostConstruct
 	public void init(){
 		System.out.println("Executing sql script...");
 
