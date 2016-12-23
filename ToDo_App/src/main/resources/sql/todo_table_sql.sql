@@ -1,6 +1,7 @@
 --DROP DATABASE TODO;
 --CREATE DATABASE TODO;
 --USE TODO;
+SELECT usename FROM pg_users;
 CREATE USER todo_app WITH PASSWORD 'todo_app';
 CREATE SCHEMA IF NOT EXISTS postgres_1 ;
 GRANT ALL ON ALL postgres_1 TO todo_app ;
