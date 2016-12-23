@@ -13,49 +13,20 @@
 
 	<context:annotation-config></context:annotation-config>
 
-<<<<<<< HEAD
      <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-=======
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
->>>>>>> 8ce03d52dc60627134c420f4dd7e73b980d26d41
       <property name="driverClassName" value="org.postgresql.Driver"></property>
        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
     	<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
     	<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
-<<<<<<< HEAD
        <!--  <property name="initialSize" value="10"></property>
         <property name="maxTotal" value="20"></property>
         <property name="maxIdle" value="10"></property> -->
-=======
->>>>>>> 8ce03d52dc60627134c420f4dd7e73b980d26d41
     </bean>
     
     <bean class="java.net.URI" id="dbUrl">
       <constructor-arg value="#{systemEnvironment['DATABASE_URL']}" />
    </bean> 
-<<<<<<< HEAD
    
-   <!--  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-=======
-
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
->>>>>>> 8ce03d52dc60627134c420f4dd7e73b980d26d41
-     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/mysql" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
-<<<<<<< HEAD
-        <property name="initialSize" value="10"></property>
-        <property name="maxTotal" value="20"></property>
-        <property name="maxIdle" value="10"></property>
-    </bean> -->
-=======
-       <property name="initialSize" value="10"></property>
-        <property name="maxTotal" value="20"></property>
-        <property name="maxIdle" value="10"></property> 
-    </bean>-->
->>>>>>> 8ce03d52dc60627134c420f4dd7e73b980d26d41
-
     <bean id="namedParameterJdbcTemplate"
           class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"></constructor-arg>

@@ -25,7 +25,6 @@ public class DatabaseInit {
 	
 	@PostConstruct
 	public void init(){
-<<<<<<< HEAD
 //		URI dbUri=null;
 //		try {
 //			 dbUri = new URI(System.getenv("DATABASE_URL"));
@@ -63,7 +62,6 @@ public class DatabaseInit {
                System.out.println(e.getMessage());
                return ;
            }
-=======
 		System.out.println("Executing sql script...");
 
 		try (Connection connection = dataSource.getConnection();
@@ -77,7 +75,6 @@ public class DatabaseInit {
               System.out.println(e.getMessage());
               return ;
           }
->>>>>>> 8ce03d52dc60627134c420f4dd7e73b980d26d41
 	}
 	
 	private static String getConnection() throws URISyntaxException, SQLException {
