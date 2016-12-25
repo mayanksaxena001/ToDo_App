@@ -27,7 +27,6 @@ public class TodoRepositoryImpl implements TodoRepository{
 	
 	@Override
 	public List<TodoItem> getTodoItemsList() {
-		System.out.println("Named jdbc template : "+namedParameterJdbcTemplate );
 		return namedParameterJdbcTemplate.query(SELECT_ALL_TODO_ITEMS, rowMapper);
 	}
 
