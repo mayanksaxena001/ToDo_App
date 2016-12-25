@@ -15,6 +15,7 @@
 --SELECT usename FROM pg_users;
 --ALTER USER todo_app SET search_path=postgres_1;
 --drop table IF EXISTS postgres_1.todo_items;
+truncate todo_items;
 create table todo_items(
 id int NOT NULL ,
 text varchar(255),
