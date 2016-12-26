@@ -10,7 +10,7 @@ $(document).ready(function () {
         ob[0].id = res.id;
     }
   };
-        xhttp.open("POST", "https://evening-meadow-31025.herokuapp.com/api/service/add", true);
+        xhttp.open("POST", "https://evening-meadow-31025.herokuapp.com/services/api/service/add", true);
          xhttp.setRequestHeader("Content-type", "application/json");
 		 var jsonObject={"id":0,"text":$("input[name=task]").val(),"createdDate":Math.floor(Date.now()),"dueDate":$("input[name=due]").val()};
          xhttp.send(JSON.stringify(jsonObject));
@@ -20,7 +20,7 @@ $(document).ready(function () {
 		var id=ul[0].id;
         $(this).closest("ul").remove();
 		 var xhttp = new XMLHttpRequest();
-		 var url="https://evening-meadow-31025.herokuapp.com/api/service/delete/"+id;
+		 var url="https://evening-meadow-31025.herokuapp.com/services/api/service/delete/"+id;
 		 xhttp.open("DELETE", url, true);
 		  xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
          xhttp.setRequestHeader("Content-type", "application/json");
