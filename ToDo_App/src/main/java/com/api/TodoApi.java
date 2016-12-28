@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 
 import com.util.TodoItem;
 
-@Path("/service")
+@Path("/")
 public interface TodoApi {
 
 	@GET
@@ -23,17 +23,17 @@ public interface TodoApi {
 	List<TodoItem> getTodoItemsList();
 
 	@POST
-	@Path("/add")
+	@Path("/item")
 	@Consumes(MediaType.APPLICATION_JSON)
 	Response addTodoItem(TodoItem todoItem);
 
 	@POST
-	@Path("/update/{id}")
+	@Path("/item/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	Response updateTodoItem(@PathParam("id") Integer id, TodoItem todoItem);
 
 	@DELETE
-	@Path("/delete/{id}")
+	@Path("/item/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	Response deleteTodoItem(@PathParam("id") Integer id);
 
